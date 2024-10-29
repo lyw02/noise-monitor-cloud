@@ -1,0 +1,25 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nioseapp-staging-9e0cc-authRole",
+      "UnauthRoleArn": "arn:aws:iam::296062566633:role/amplify-nioseapp-staging-9e0cc-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::296062566633:role/amplify-nioseapp-staging-9e0cc-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-nioseapp-staging-9e0cc-deployment",
+      "UnauthRoleName": "amplify-nioseapp-staging-9e0cc-unauthRole",
+      "StackName": "amplify-nioseapp-staging-9e0cc",
+      "StackId": "arn:aws:cloudformation:eu-west-1:296062566633:stack/amplify-nioseapp-staging-9e0cc/e6025560-95d5-11ef-ab84-0a3e1e92183b",
+      "AmplifyAppId": "d2vejw680jr49z"
+    },
+    "categories": {
+      "auth": {
+        "nioseapp": {
+          "nativeClientId": "7gfe6baim28l4ftjodk0a45lai",
+          "userPoolId": "eu-west-1_Jbbu1nxLr",
+          "userPoolName": "UserPool6BA7E5F2-wpfW1lRv6f0M",
+          "webClientId": "7gfe6baim28l4ftjodk0a45lai"
+        }
+      }
+    }
+  }
+}

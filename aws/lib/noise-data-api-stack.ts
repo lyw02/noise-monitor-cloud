@@ -1,9 +1,3 @@
-// import * as cdk from "@aws-cdk/core";
-// import * as dynamodb from "@aws-cdk/aws-dynamodb";
-// import * as cognito from '@aws-cdk/aws-cognito';
-// import * as lambda from '@aws-cdk/aws-lambda';
-// import * as lambdanode from "@aws-cdk/aws-lambda-nodejs";
-// import * as apig from "@aws-cdk/aws-apigateway";
 import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import {
