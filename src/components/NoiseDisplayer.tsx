@@ -9,7 +9,7 @@ const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
     let audioContext: AudioContext;
     let analyser: AnalyserNode;
     let microphone: MediaStreamAudioSourceNode;
-    let interval: number;
+    let interval: NodeJS.Timeout;
 
     const startListening = async () => {
       console.log("Start monitoring");
@@ -97,9 +97,9 @@ const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
   }, [isMonitoring]);
 
   return isMonitoring ? (
-    <h3>Noise Level: {decibels.toFixed(2)} dB</h3>
+    <span>Noise Level: {decibels.toFixed(2)} dB</span>
   ) : (
-    <h3>Not monitoring</h3>
+    <span>Not monitoring</span>
   );
 };
 
