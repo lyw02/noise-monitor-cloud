@@ -6,21 +6,32 @@ import YourDataTab from "@/components/YourDataTab";
 import OpenDataTab from "@/components/OpenDataTab";
 import SettingsTab from "@/components/SettingsTab";
 
-import { Amplify } from "aws-amplify";
 import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import config from "./amplifyconfiguration.json";
-Amplify.configure(config);
+import { uploadData } from "./api/dataApi";
+import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
 export function App() {
   const [isMonitoring, setIsMonitoring] = useState(false);
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
 
+  const handleClick = async () => {
+    const { username, userId, signInDetails } = await getCurrentUser();
+    console.log({ username, userId, signInDetails })
+    const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+    console.log({ accessToken, idToken })
+    console.log(accessToken?.toString())
+    const res = await uploadData();
+    console.log(`res: ${res}`)
+  };
+
   return (
     <>
-      <h1 className="ml-8">Noise Monitor</h1>
+      <h1 className="ml-8" onClick={handleClick}>
+        Noise Monitor
+      </h1>
       <span className="ml-8">Current user: {user.signInDetails?.loginId}</span>
       <Tabs defaultValue="monitor" className="w-auto ml-8 mr-8">
         <TabsList className="grid w-full grid-cols-4 space-x-2">

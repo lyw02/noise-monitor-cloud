@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "nioseapp",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "noiseapp4f6ad6db",
   "serviceType": "imported",
   "region": "eu-west-1",
   "usernameAttributes": [

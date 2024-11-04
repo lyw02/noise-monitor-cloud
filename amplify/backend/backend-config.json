@@ -1,6 +1,22 @@
 {
+  "api": {
+    "NoiseAppAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "dataFn"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
-    "nioseapp": {
+    "noiseapp4f6ad6db": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -8,38 +24,153 @@
       "serviceType": "imported"
     }
   },
+  "function": {
+    "dataFn": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "NoiseDataByUser"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "NoiseDataByUser"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "parameters": {
-    "AMPLIFY_auth_nioseapp_nativeClientId": {
+    "AMPLIFY_auth_noiseapp4f6ad6db_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "nioseapp"
+          "resourceName": "noiseapp4f6ad6db"
         }
       ]
     },
-    "AMPLIFY_auth_nioseapp_userPoolId": {
+    "AMPLIFY_auth_noiseapp4f6ad6db_authRoleArn": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "nioseapp"
+          "resourceName": "noiseapp4f6ad6db"
         }
       ]
     },
-    "AMPLIFY_auth_nioseapp_userPoolName": {
+    "AMPLIFY_auth_noiseapp4f6ad6db_authRoleName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "nioseapp"
+          "resourceName": "noiseapp4f6ad6db"
         }
       ]
     },
-    "AMPLIFY_auth_nioseapp_webClientId": {
+    "AMPLIFY_auth_noiseapp4f6ad6db_identityPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "nioseapp"
+          "resourceName": "noiseapp4f6ad6db"
         }
       ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_auth_noiseapp4f6ad6db_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        }
+      ]
+    },
+    "AMPLIFY_function_dataFn_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dataFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_dataFn_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dataFn"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "NoiseDataByUser": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }

@@ -1,24 +1,45 @@
 {
-  "staging": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-nioseapp-staging-9e0cc-authRole",
-      "UnauthRoleArn": "arn:aws:iam::296062566633:role/amplify-nioseapp-staging-9e0cc-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::296062566633:role/amplify-nioseapp-staging-9e0cc-authRole",
+      "AuthRoleName": "amplify-noiseapp-dev-f8571-authRole",
+      "UnauthRoleArn": "arn:aws:iam::296062566633:role/amplify-noiseapp-dev-f8571-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::296062566633:role/amplify-noiseapp-dev-f8571-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-nioseapp-staging-9e0cc-deployment",
-      "UnauthRoleName": "amplify-nioseapp-staging-9e0cc-unauthRole",
-      "StackName": "amplify-nioseapp-staging-9e0cc",
-      "StackId": "arn:aws:cloudformation:eu-west-1:296062566633:stack/amplify-nioseapp-staging-9e0cc/e6025560-95d5-11ef-ab84-0a3e1e92183b",
-      "AmplifyAppId": "d2vejw680jr49z"
+      "DeploymentBucketName": "amplify-noiseapp-dev-f8571-deployment",
+      "UnauthRoleName": "amplify-noiseapp-dev-f8571-unauthRole",
+      "StackName": "amplify-noiseapp-dev-f8571",
+      "StackId": "arn:aws:cloudformation:eu-west-1:296062566633:stack/amplify-noiseapp-dev-f8571/f005c5d0-983a-11ef-a77a-066f6730917b",
+      "AmplifyAppId": "dfmnw26l4sm5h",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-noiseapp-dev-f8571-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
+      "storage": {
+        "NoiseDataByUser": {}
+      },
       "auth": {
-        "nioseapp": {
-          "nativeClientId": "7gfe6baim28l4ftjodk0a45lai",
+        "noiseapp4f6ad6db": {
           "userPoolId": "eu-west-1_Jbbu1nxLr",
           "userPoolName": "UserPool6BA7E5F2-wpfW1lRv6f0M",
-          "webClientId": "7gfe6baim28l4ftjodk0a45lai"
+          "webClientId": "7gfe6baim28l4ftjodk0a45lai",
+          "nativeClientId": "7gfe6baim28l4ftjodk0a45lai",
+          "identityPoolId": "eu-west-1:f45d8ac2-2949-46ef-88eb-97587b88359d",
+          "identityPoolName": "NoiseAppIdentityPool",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::296062566633:role/eu-west-1_C6Eg1PCoa_Full-access",
+          "authRoleName": "eu-west-1_C6Eg1PCoa_Full-access",
+          "unauthRoleArn": "arn:aws:iam::296062566633:role/service-role/NoiseAppGuest",
+          "unauthRoleName": "NoiseAppGuest"
         }
+      },
+      "function": {
+        "testFn": {},
+        "dataFn": {
+          "deploymentBucketName": "amplify-noiseapp-dev-f8571-deployment",
+          "s3Key": "amplify-builds/dataFn-65655074706576317968-build.zip"
+        }
+      },
+      "api": {
+        "NoiseAppAPI": {}
       }
     }
   }
