@@ -13,29 +13,28 @@
       "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-noiseapp-dev-f8571-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
+      "auth": {
+        "noiseapp4f6ad6db": {
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::296062566633:role/service-role/NoiseAppRole",
+          "authRoleName": "NoiseAppRole",
+          "identityPoolId": "eu-west-1:f45d8ac2-2949-46ef-88eb-97587b88359d",
+          "identityPoolName": "NoiseAppIdentityPool",
+          "nativeClientId": "7gfe6baim28l4ftjodk0a45lai",
+          "unauthRoleArn": "arn:aws:iam::296062566633:role/service-role/NoiseAppGuest",
+          "unauthRoleName": "NoiseAppGuest",
+          "userPoolId": "eu-west-1_Jbbu1nxLr",
+          "userPoolName": "UserPool6BA7E5F2-wpfW1lRv6f0M",
+          "webClientId": "7gfe6baim28l4ftjodk0a45lai"
+        }
+      },
       "storage": {
         "NoiseDataByUser": {}
       },
-      "auth": {
-        "noiseapp4f6ad6db": {
-          "userPoolId": "eu-west-1_Jbbu1nxLr",
-          "userPoolName": "UserPool6BA7E5F2-wpfW1lRv6f0M",
-          "webClientId": "7gfe6baim28l4ftjodk0a45lai",
-          "nativeClientId": "7gfe6baim28l4ftjodk0a45lai",
-          "identityPoolId": "eu-west-1:f45d8ac2-2949-46ef-88eb-97587b88359d",
-          "identityPoolName": "NoiseAppIdentityPool",
-          "allowUnauthenticatedIdentities": false,
-          "authRoleArn": "arn:aws:iam::296062566633:role/eu-west-1_C6Eg1PCoa_Full-access",
-          "authRoleName": "eu-west-1_C6Eg1PCoa_Full-access",
-          "unauthRoleArn": "arn:aws:iam::296062566633:role/service-role/NoiseAppGuest",
-          "unauthRoleName": "NoiseAppGuest"
-        }
-      },
       "function": {
-        "testFn": {},
         "dataFn": {
           "deploymentBucketName": "amplify-noiseapp-dev-f8571-deployment",
-          "s3Key": "amplify-builds/dataFn-65655074706576317968-build.zip"
+          "s3Key": "amplify-builds/dataFn-50797138496c736e4d2f-build.zip"
         }
       },
       "api": {

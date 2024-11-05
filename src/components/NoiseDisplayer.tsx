@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
-import { UPDATE_INTERVAL } from "../const";
+import { getCurrentUser } from "aws-amplify/auth";
+import { UPDATE_INTERVAL } from "@/const";
+import { DataRecord } from "@/types";
+import { uploadData } from "@/api/dataApi";
 
 const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
   const [decibels, setDecibels] = useState<number>(0);
   const [csvData, setCsvData] = useState<string>("");
+  const [record, setRecord] = useState<DataRecord>();
+  const [userId, setUserId] = useState<string>();
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const { signInDetails } = await getCurrentUser();
+      signInDetails?.loginId && setUserId(signInDetails?.loginId);
+    };
+    fetchUserId();
+  }, []);
 
   useEffect(() => {
     let audioContext: AudioContext;
@@ -54,6 +67,13 @@ const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
             const { latitude, longitude } = position.coords;
             const data = `${timestamp},${latitude},${longitude},${decibels}\n`;
             console.log(data);
+            setRecord({
+              userId: userId || "Unknown user",
+              timestamp: Date.parse(timestamp),
+              latitude,
+              longitude,
+              decibels,
+            });
             setCsvData((prev) => prev + data);
           });
         }, UPDATE_INTERVAL);
@@ -78,6 +98,10 @@ const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
       }
     };
   }, [isMonitoring]);
+
+  useEffect(() => {
+    record && uploadData(record);
+  }, [record]);
 
   useEffect(() => {
     if (!isMonitoring && csvData) {
