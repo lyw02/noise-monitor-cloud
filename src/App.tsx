@@ -32,7 +32,7 @@ export function App() {
         </Button>
       </span>
       <Tabs defaultValue="monitor" className="w-auto ml-8 mr-8">
-        <TabsList className="grid w-full grid-cols-4 space-x-2">
+        <TabsList className="grid w-full grid-cols-3 space-x-2">
           <TabsTrigger value="monitor">Monitor</TabsTrigger>
           <TabsTrigger value="your-data">Your Data</TabsTrigger>
           <TabsTrigger value="open-data">Open Data</TabsTrigger>

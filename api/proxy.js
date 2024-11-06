@@ -1,18 +1,21 @@
 import fetch from "node-fetch";
 
-export default async function (req, res) {
-  const url = "https://data.smartdublin.ie/sonitus-api/data";
+export default async function handler(req, res) {
+  const { monitor, start, end } = req.query;
 
-  if (req.method === "POST") {
-    const result = await fetch(url, {
+  const apiUrl = `https://data.smartdublin.ie/sonitus-api/api/data?username=dublincityapi&password=Xpa5vAQ9ki&monitor=${monitor}&start=${start}&end=${end}`;
+
+  try {
+    const apiResponse = await fetch(apiUrl, {
       method: "POST",
-      headers: { ...req.headers, host: new URL(url).host },
-      body: JSON.stringify(req.body),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
-    const data = await result.text();
-    res.status(result.status).send(data);
-  } else {
-    res.status(405).end();
+    const data = await apiResponse.json();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Error forwarding request" });
   }
 }
