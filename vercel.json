@@ -4,5 +4,6 @@
       "source": "/data",
       "destination": "/api/proxy"
     }
-  ]
+  ],
+  "ignores": ["^README\\.md$"]
 }
