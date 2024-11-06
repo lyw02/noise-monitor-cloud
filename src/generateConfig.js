@@ -1,5 +1,5 @@
 // generateConfigs.js
-const fs = require("fs");
+import { writeFileSync } from "fs";
 
 const amplifyConfig = {
   aws_project_region: process.env.AWS_PROJECT_REGION,
@@ -42,7 +42,7 @@ const amplifyConfig = {
 };
 
 // Generate amplifyconfiguration.json
-fs.writeFileSync(
+writeFileSync(
   "./src/amplifyconfiguration.json",
   JSON.stringify(amplifyConfig, null, 2)
 );
@@ -55,6 +55,6 @@ const awsmobile = ${JSON.stringify(amplifyConfig, null, 2)};
 
 export default awsmobile;`;
 
-fs.writeFileSync("./src/aws-exports.js", awsExportsContent);
+writeFileSync("./src/aws-exports.js", awsExportsContent);
 
 console.log("Configuration files generated successfully.");
