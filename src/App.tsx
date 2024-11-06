@@ -7,11 +7,15 @@ import OpenDataTab from "@/components/OpenDataTab";
 import SettingsTab from "@/components/SettingsTab";
 import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import NoiseDisplayer from "./components/NoiseDisplayer";
 
 export function App() {
   const [isMonitoring, setIsMonitoring] = useState(false);
 
   const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const userId = user.signInDetails?.loginId;
+
+  if (!userId) return "Unauthorized user";
 
   const handleClick = async () => {
     signOut();
@@ -20,8 +24,10 @@ export function App() {
   return (
     <>
       <h1 className="ml-8">Noise Monitor</h1>
-      <span className="ml-8">Current user: {user.signInDetails?.loginId}</span>
-      <button onClick={handleClick} className="ml-10">Sign out</button>
+      <span className="ml-8">Current user: {userId}</span>
+      <button onClick={handleClick} className="ml-10">
+        Sign out
+      </button>
       <Tabs defaultValue="monitor" className="w-auto ml-8 mr-8">
         <TabsList className="grid w-full grid-cols-4 space-x-2">
           <TabsTrigger value="monitor">Monitor</TabsTrigger>
@@ -33,10 +39,15 @@ export function App() {
           <MonitorTab
             isMonitoring={isMonitoring}
             setIsMonitoring={setIsMonitoring}
-          />
+          >
+            <NoiseDisplayer
+              isMonitoring={isMonitoring}
+              userId={userId}
+            />
+          </MonitorTab>
         </TabsContent>
         <TabsContent value="your-data">
-          <YourDataTab />
+          <YourDataTab userId={userId} />
         </TabsContent>
         <TabsContent value="open-data">
           <OpenDataTab />

@@ -4,19 +4,25 @@ import { UPDATE_INTERVAL } from "@/const";
 import { DataRecord } from "@/types";
 import { uploadData } from "@/api/dataApi";
 
-const NoiseDisplayer = ({ isMonitoring }: { isMonitoring: boolean }) => {
+const NoiseDisplayer = ({
+  isMonitoring,
+  userId,
+}: {
+  isMonitoring: boolean;
+  userId: string;
+}) => {
   const [decibels, setDecibels] = useState<number>(0);
   const [csvData, setCsvData] = useState<string>("");
   const [record, setRecord] = useState<DataRecord>();
-  const [userId, setUserId] = useState<string>();
+  // const [userId, setUserId] = useState<string>();
 
-  useEffect(() => {
-    const fetchUserId = async () => {
-      const { signInDetails } = await getCurrentUser();
-      signInDetails?.loginId && setUserId(signInDetails?.loginId);
-    };
-    fetchUserId();
-  }, []);
+  // useEffect(() => {
+  //   const fetchUserId = async () => {
+  //     const { signInDetails } = await getCurrentUser();
+  //     signInDetails?.loginId && setUserId(signInDetails?.loginId);
+  //   };
+  //   fetchUserId();
+  // }, []);
 
   useEffect(() => {
     let audioContext: AudioContext;

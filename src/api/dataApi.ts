@@ -23,14 +23,15 @@ export const uploadData = async (data: DataRecord) => {
   }
 };
 
-export const getData = async () => {
+export const getData = async (userId: string) => {
   try {
     const restOperation = get({
       apiName: "NoiseAppAPI",
-      path: "/data",
+      path: `/data/${userId}`,
     });
     const response = await restOperation.response;
     console.log("GET call succeeded: ", response);
+    return response;
   } catch (e: any) {
     console.log("GET call failed: ", JSON.parse(e));
   }
