@@ -1,5 +1,9 @@
 # Noise Monitor Cloud - How to start
 
+Visit the deployed version: [https://noise-monitor-cloud.vercel.app/](https://noise-monitor-cloud.vercel.app/)
+
+Or follow the instructions below to start locally:
+
 ## 1. Depoly AWS serverless backend
 
 ### Step 1 - Create an AWS account
@@ -10,7 +14,7 @@ Create an [IAM user](https://us-east-1.console.aws.amazon.com/iam/) in AWS conso
 
 ### Step 2 - Set up AWS Amplify
 
-Install aws-cli [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). 
+Install aws-cli [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
 Use following command to check the installation:
 
