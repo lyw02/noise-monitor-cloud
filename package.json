@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node generateConfig.js",
+    "prebuild": "node src/generateConfig.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
