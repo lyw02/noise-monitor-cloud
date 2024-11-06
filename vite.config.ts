@@ -16,4 +16,13 @@ export default defineConfig({
       plugins: [tailwindcss],
     },
   },
+  server: {
+    proxy: {
+      "/data": {
+        target: "https://data.smartdublin.ie/sonitus-api/api/data",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/data/, ""),
+      },
+    },
+  },
 });

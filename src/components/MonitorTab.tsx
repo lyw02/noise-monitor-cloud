@@ -21,8 +21,11 @@ export default function MonitorTab({
 }: MonitorTabProps) {
   return (
     <Card>
+      <CardHeader>
+        <CardTitle>Monitor</CardTitle>
+        <CardDescription>Use monitor to collect noise data. Automatically upload to AWS in real-time.</CardDescription>
+      </CardHeader>
       <CardContent className={`w-full mt-8 flex justify-center`}>
-        {/* <NoiseDisplayer isMonitoring={isMonitoring} /> */}
         {children}
       </CardContent>
       <CardFooter>

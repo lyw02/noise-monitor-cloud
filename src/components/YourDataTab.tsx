@@ -15,14 +15,14 @@ interface YourDataTabProps {
   userId: string;
 }
 
-export const columns: ColumnDef<DataRecord>[] = [
+const columns: ColumnDef<DataRecord>[] = [
   {
     accessorKey: "userId",
     header: "User",
   },
   {
     accessorKey: "timestamp",
-    header: "Timestamp",
+    header: "Timestamp (s)",
   },
   {
     accessorKey: "latitude",

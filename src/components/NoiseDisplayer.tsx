@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getCurrentUser } from "aws-amplify/auth";
 import { UPDATE_INTERVAL } from "@/const";
 import { DataRecord } from "@/types";
 import { uploadData } from "@/api/dataApi";
@@ -14,15 +13,6 @@ const NoiseDisplayer = ({
   const [decibels, setDecibels] = useState<number>(0);
   const [csvData, setCsvData] = useState<string>("");
   const [record, setRecord] = useState<DataRecord>();
-  // const [userId, setUserId] = useState<string>();
-
-  // useEffect(() => {
-  //   const fetchUserId = async () => {
-  //     const { signInDetails } = await getCurrentUser();
-  //     signInDetails?.loginId && setUserId(signInDetails?.loginId);
-  //   };
-  //   fetchUserId();
-  // }, []);
 
   useEffect(() => {
     let audioContext: AudioContext;
@@ -33,7 +23,7 @@ const NoiseDisplayer = ({
     const startListening = async () => {
       console.log("Start monitoring");
       if (!navigator.mediaDevices) {
-        alert("Ooops!!! Your browser does not support media devices.");
+        alert("Error: Your browser does not support media devices.");
         return;
       }
 
@@ -75,7 +65,7 @@ const NoiseDisplayer = ({
             console.log(data);
             setRecord({
               userId: userId || "Unknown user",
-              timestamp: Date.parse(timestamp),
+              timestamp: Math.floor(Date.parse(timestamp) / 1000),
               latitude,
               longitude,
               decibels,
