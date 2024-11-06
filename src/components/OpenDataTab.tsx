@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DataTable } from "./DataTable";
+import { DataTable, HeaderWithTooltip } from "@/components/DataTable";
 
 interface OpenDataTabProps {}
 
@@ -34,35 +34,69 @@ const columns: ColumnDef<OpenDataRecord>[] = [
   },
   {
     accessorKey: "laeq",
-    header: "LAEQ",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LAEQ"
+        tooltip="Equivalent Continuous Sound Level"
+      />
+    ),
   },
   {
     accessorKey: "lafmax",
-    header: "LAFMAX",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LAFMAX"
+        tooltip="Maximum A-weighted Fast Sound Level"
+      />
+    ),
   },
   {
     accessorKey: "la10",
-    header: "LA10",
+    header: () => (
+      <HeaderWithTooltip colName="LA10" tooltip="10th Percentile Sound Level" />
+    ),
   },
   {
     accessorKey: "la90",
-    header: "LA90",
+    header: () => (
+      <HeaderWithTooltip colName="LA90" tooltip="90th Percentile Sound Level" />
+    ),
   },
   {
     accessorKey: "lceq",
-    header: "LCEQ",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LCEQ"
+        tooltip="Equivalent Continuous Sound Level with C-weighting"
+      />
+    ),
   },
   {
     accessorKey: "lcfmax",
-    header: "LCFMAX",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LCFMAX"
+        tooltip="Maximum C-weighted Fast Sound Level"
+      />
+    ),
   },
   {
     accessorKey: "lc10",
-    header: "LC10",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LC10"
+        tooltip="10th Percentile Sound Level with C-weighting"
+      />
+    ),
   },
   {
     accessorKey: "lc90",
-    header: "LC90",
+    header: () => (
+      <HeaderWithTooltip
+        colName="LC90"
+        tooltip="90th Percentile Sound Level with C-weighting"
+      />
+    ),
   },
 ];
 

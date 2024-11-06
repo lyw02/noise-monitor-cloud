@@ -1,13 +1,12 @@
 import { useState } from "react";
-
+import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import MonitorTab from "@/components/MonitorTab";
 import YourDataTab from "@/components/YourDataTab";
 import OpenDataTab from "@/components/OpenDataTab";
-import SettingsTab from "@/components/SettingsTab";
-import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-import NoiseDisplayer from "./components/NoiseDisplayer";
+import NoiseDisplayer from "@/components/NoiseDisplayer";
 
 export function App() {
   const [isMonitoring, setIsMonitoring] = useState(false);
@@ -23,27 +22,27 @@ export function App() {
 
   return (
     <>
-      <h1 className="ml-8">Noise Monitor</h1>
-      <span className="ml-8">Current user: {userId}</span>
-      <button onClick={handleClick} className="ml-10">
-        Sign out
-      </button>
+      <span className="flex justify-between items-center my-4 mx-8">
+        <span className="">Current user: <b>{userId}</b></span>
+        <Button
+          onClick={handleClick}
+          className="bg-white text-black hover:bg-white hover:text-red-400"
+        >
+          Sign out
+        </Button>
+      </span>
       <Tabs defaultValue="monitor" className="w-auto ml-8 mr-8">
         <TabsList className="grid w-full grid-cols-4 space-x-2">
           <TabsTrigger value="monitor">Monitor</TabsTrigger>
           <TabsTrigger value="your-data">Your Data</TabsTrigger>
           <TabsTrigger value="open-data">Open Data</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="monitor">
           <MonitorTab
             isMonitoring={isMonitoring}
             setIsMonitoring={setIsMonitoring}
           >
-            <NoiseDisplayer
-              isMonitoring={isMonitoring}
-              userId={userId}
-            />
+            <NoiseDisplayer isMonitoring={isMonitoring} userId={userId} />
           </MonitorTab>
         </TabsContent>
         <TabsContent value="your-data">
@@ -51,9 +50,6 @@ export function App() {
         </TabsContent>
         <TabsContent value="open-data">
           <OpenDataTab />
-        </TabsContent>
-        <TabsContent value="settings">
-          <SettingsTab />
         </TabsContent>
       </Tabs>
     </>

@@ -13,6 +13,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
@@ -102,5 +108,24 @@ export function DataTable<TData, TValue>({
         </Button>
       </div>
     </div>
+  );
+}
+
+export function HeaderWithTooltip({
+  colName,
+  tooltip,
+}: {
+  colName: string;
+  tooltip: string;
+}) {
+  return (
+    <TooltipProvider delayDuration={100}>
+      <Tooltip>
+        <TooltipTrigger>{colName}</TooltipTrigger>
+        <TooltipContent>
+          <p>{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

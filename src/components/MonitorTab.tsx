@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import NoiseDisplayer from "./NoiseDisplayer";
 
 interface MonitorTabProps {
   isMonitoring: boolean;
