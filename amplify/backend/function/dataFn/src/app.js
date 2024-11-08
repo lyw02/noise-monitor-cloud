@@ -39,18 +39,6 @@ if (process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + "-" + process.env.ENV;
 }
 
-// const formDataToJson = (formData) => {
-//   const object = {};
-//   for (const [key, value] of formData.entries()) {
-//     if (Reflect.has(object, key)) {
-//       object[key] = [].concat(object[key], value);
-//     } else {
-//       object[key] = value;
-//     }
-//   }
-//   return JSON.stringify(object);
-// };
-
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "userId";
 const partitionKeyType = "S";

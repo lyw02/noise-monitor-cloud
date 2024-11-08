@@ -35,7 +35,7 @@
       "function": {
         "dataFn": {
           "deploymentBucketName": "amplify-noiseapp-dev-f8571-deployment",
-          "s3Key": "amplify-builds/dataFn-50797138496c736e4d2f-build.zip"
+          "s3Key": "amplify-builds/dataFn-6f5a63546e5a6545454e-build.zip"
         },
         "openDataFn": {
           "deploymentBucketName": "amplify-noiseapp-dev-f8571-deployment",
