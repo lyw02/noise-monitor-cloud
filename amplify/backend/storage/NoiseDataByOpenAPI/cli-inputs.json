@@ -1,0 +1,14 @@
+{
+  "resourceName": "NoiseDataByOpenAPI",
+  "tableName": "NoiseDataByOpenAPI",
+  "partitionKey": {
+    "fieldName": "monitor",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "datetime",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

@@ -7,6 +7,19 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/openData": {
+      "name": "/openData",
+      "lambdaFunction": "openDataFn",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
     }
   }
 }

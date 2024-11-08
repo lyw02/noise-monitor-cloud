@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { Loader2 } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 import {
   Card,
@@ -12,20 +13,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DataTable, HeaderWithTooltip } from "@/components/DataTable";
+import { useToast } from "@/hooks/use-toast";
+import { uploadOpenData } from "@/api/openDataApi";
+import { OpenDataRecord } from "@/types";
 
 interface OpenDataTabProps {}
 
-interface OpenDataRecord {
-  datetime: string;
-  laeq: number;
-  lafmax: number;
-  la10: number;
-  la90: number;
-  lceq: number;
-  lcfmax: number;
-  lc10: number;
-  lc90: number;
-}
+// interface OpenDataRecord {
+//   datetime: string;
+//   laeq: number;
+//   lafmax: number;
+//   la10: number;
+//   la90: number;
+//   lceq: number;
+//   lcfmax: number;
+//   lc10: number;
+//   lc90: number;
+// }
 
 const columns: ColumnDef<OpenDataRecord>[] = [
   {
@@ -102,7 +106,11 @@ const columns: ColumnDef<OpenDataRecord>[] = [
 
 export default function OpenDataTab({}: OpenDataTabProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [monitor, setMonitor] = useState<string>("10.1.1.1");
   const [openDataRecord, setOpenDataRecord] = useState<OpenDataRecord[]>();
+
+  const { toast } = useToast();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -114,20 +122,47 @@ export default function OpenDataTab({}: OpenDataTabProps) {
     });
     try {
       const res = await fetch(
-        `/data?username=dublincityapi&password=Xpa5vAQ9ki&monitor=${data.monitor}&start=${data.start}&end=${data.end}`,
+        `/open-data?username=dublincityapi&password=Xpa5vAQ9ki&monitor=${data.monitor}&start=${data.start}&end=${data.end}`,
         {
           method: "POST",
         }
       );
       const json = await res.json();
       if (json.error) {
-        alert(json.error);
+        toast({
+          title: "Error",
+          description: json.error,
+        });
       }
       setOpenDataRecord(json as OpenDataRecord[]);
     } catch (err: any) {
-      alert(err);
+      toast({
+        title: "Error",
+        description: err,
+      });
     }
     setIsLoading(false);
+  };
+
+  const handleUpload = async () => {
+    if (!openDataRecord) return;
+    setIsUploading(true);
+    try {
+      const recordsWithMonitor = openDataRecord.map((item) => ({
+        ...item,
+        monitor,
+      }));
+      const res = await uploadOpenData(recordsWithMonitor);
+      const json = await res?.body.json();
+      console.log(json);
+    } catch (err: any) {
+      toast({
+        title: "Error",
+        description: err,
+      });
+      console.log(`Error: ${err}`);
+    }
+    setIsUploading(false);
   };
 
   return (
@@ -153,7 +188,12 @@ export default function OpenDataTab({}: OpenDataTabProps) {
             <Label htmlFor="monitor" className="w-1/6">
               Monitor serial number
             </Label>
-            <Input id="monitor" name="monitor" defaultValue="10.1.1.1" />
+            <Input
+              id="monitor"
+              name="monitor"
+              value={monitor}
+              onChange={(e) => setMonitor(e.target.value)}
+            />
           </span>
           <span className="flex justify-between items-center">
             <Label htmlFor="start" className="w-1/6">
@@ -178,6 +218,15 @@ export default function OpenDataTab({}: OpenDataTabProps) {
           </span>
           <br />
           <Button type="submit">Search data</Button>
+          <Button
+            onClick={handleUpload}
+            variant="outline"
+            disabled={!openDataRecord || isUploading}
+            className="ml-2"
+          >
+            {isUploading && <Loader2 className="animate-spin" />}
+            Upload to cloud
+          </Button>
           <br />
           {isLoading && <p>Searching data...</p>}
           {openDataRecord && (

@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "dataFn"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "openDataFn"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -55,6 +63,25 @@
           ],
           "category": "storage",
           "resourceName": "NoiseDataByUser"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "openDataFn": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "NoiseDataByOpenAPI"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -165,9 +192,29 @@
           "resourceName": "dataFn"
         }
       ]
+    },
+    "AMPLIFY_function_openDataFn_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openDataFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_openDataFn_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openDataFn"
+        }
+      ]
     }
   },
   "storage": {
+    "NoiseDataByOpenAPI": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "NoiseDataByUser": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"

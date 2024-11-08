@@ -18,10 +18,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/data": {
+      "/open-data": {
         target: "https://data.smartdublin.ie/sonitus-api/api/data",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/data/, ""),
+        rewrite: (path) => path.replace(/^\/open-data/, ""),
       },
     },
   },
