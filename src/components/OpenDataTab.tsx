@@ -134,8 +134,10 @@ export default function OpenDataTab({}: OpenDataTabProps) {
           description: json.error,
         });
       }
-      setOpenDataRecord(json as OpenDataRecord[]);
+      console.log(json)
+      json ? setOpenDataRecord(json as OpenDataRecord[]) : setOpenDataRecord([])
     } catch (err: any) {
+      setOpenDataRecord([]);
       toast({
         title: "Error",
         description: err,
@@ -230,7 +232,7 @@ export default function OpenDataTab({}: OpenDataTabProps) {
           <br />
           {isLoading && <p>Searching data...</p>}
           {openDataRecord && (
-            <DataTable columns={columns} data={openDataRecord} />
+            <DataTable columns={columns} data={openDataRecord.reverse()} />
           )}
         </CardContent>
         <CardFooter>

@@ -17,6 +17,14 @@
           ],
           "category": "function",
           "resourceName": "openDataFn"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "openDataCronFn"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -63,6 +71,41 @@
           ],
           "category": "storage",
           "resourceName": "NoiseDataByUser"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "openDataCronFn": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "NoiseDataByOpenAPI"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "noiseapp4f6ad6db"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "NoiseDataByOpenAPI"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -190,6 +233,22 @@
         {
           "category": "function",
           "resourceName": "dataFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_openDataCronFn_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openDataCronFn"
+        }
+      ]
+    },
+    "AMPLIFY_function_openDataCronFn_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openDataCronFn"
         }
       ]
     },

@@ -23,11 +23,10 @@ export function App() {
   return (
     <>
       <span className="flex justify-between items-center my-4 mx-8">
-        <span className="">Current user: <b>{userId}</b></span>
-        <Button
-          onClick={handleClick}
-          className="bg-white text-black hover:bg-white hover:text-red-400"
-        >
+        <span className="">
+          Current user: <b>{userId}</b>
+        </span>
+        <Button variant="outline" onClick={handleClick}>
           Sign out
         </Button>
       </span>

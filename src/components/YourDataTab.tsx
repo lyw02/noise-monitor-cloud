@@ -58,7 +58,7 @@ export default function YourDataTab({ userId }: YourDataTabProps) {
       </CardHeader>
       <CardContent className="space-y-2">
         {dataRecords ? (
-          <DataTable columns={columns} data={dataRecords} />
+          <DataTable columns={columns} data={dataRecords.reverse()} />
         ) : (
           "Loading..."
         )}

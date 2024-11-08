@@ -20,6 +20,17 @@
           "delete"
         ]
       }
+    },
+    "/openDataCron": {
+      "name": "/openDataCron",
+      "lambdaFunction": "openDataCronFn",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read"
+        ]
+      }
     }
   }
 }

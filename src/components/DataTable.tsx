@@ -91,6 +91,7 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
+          type="button"
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
@@ -98,7 +99,11 @@ export function DataTable<TData, TValue>({
         >
           Previous
         </Button>
+        <span className="mx-2">
+          {table.getState().pagination.pageIndex + 1}/{table.getPageCount()}
+        </span>
         <Button
+          type="button"
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}

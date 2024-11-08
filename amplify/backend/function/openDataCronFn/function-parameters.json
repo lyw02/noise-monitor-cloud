@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "auth": {
+      "noiseapp4f6ad6db": [
+        "create",
+        "read"
+      ]
+    },
+    "storage": {
+      "NoiseDataByOpenAPI": [
+        "create",
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

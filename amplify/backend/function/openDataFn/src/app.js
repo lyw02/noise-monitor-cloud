@@ -210,9 +210,6 @@ app.post(path, async function (req, res) {
           UNAUTH;
       }
 
-      // const { datetime: time, ...rest } = item;
-      // const newItem = { time, ...rest };
-
       let putItemParams = {
         TableName: tableName,
         Item: item,
